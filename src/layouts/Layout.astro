@@ -1,0 +1,43 @@
+---
+import { SEO, type SEOProps } from "astro-seo";
+
+interface Props extends SEOProps {
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  frontmatter?: any;
+}
+
+const props: Props = {
+  title: "Grimoire",
+  description:
+    "Grimoire is an open-source, framework-agnostic UI library designed for building landing pages.",
+  openGraph: {
+    basic: {
+      type: "website",
+      title: "Grimoire",
+      image: "https://grmoir.com/og.jpg",
+    },
+  },
+  ...Astro.props,
+  ...Astro.props.frontmatter,
+};
+---
+
+<!doctype html>
+<html class="scroll-smooth antialiased" lang="en">
+  <head>
+    <SEO {...props} />
+    {/* Google Fonts */}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="utf-8" />
+  </head>
+  <body class="bg-white dark:bg-black">
+    <slot />
+  </body>
+</html>

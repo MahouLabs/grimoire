@@ -1,0 +1,62 @@
+---
+// import ReactButton from './Button.tsx'
+// import VueButton from './Button.vue'
+const framework = "astro"; // Default value
+---
+
+<p id="selected-framework">Selected framework: {framework}</p>
+
+<!-- Buttons to change the framework -->
+<button id="select-react">Select React</button>
+<button id="select-vue">Select Vue</button>
+
+<div id="react-wrapper" style="display: block;">
+  <!-- <ReactButton client:visible/> -->
+</div>
+
+<div id="vue-wrapper" style="display: none;">  
+  <!-- <VueButton client:visible/> -->
+</div>
+
+
+<script>
+  // Function to update the framework value on the page
+  function updateFramework() {
+    const framework = localStorage.getItem('framework') || 'astro';
+    const paragraph = document.getElementById('selected-framework');
+    if (paragraph) {
+      paragraph.textContent = `Selected framework: ${framework}`;
+    }
+  }
+
+  // Function to set the framework in localStorage and update the page
+  function setFramework(framework: string) {
+    localStorage.setItem('framework', framework);
+    updateFramework();
+    changeRenderedElement()
+  }
+
+  function changeRenderedElement() {
+    const framework = localStorage.getItem('framework');
+    const reactWrapper = document.getElementById('react-wrapper');
+    const vueWrapper = document.getElementById('vue-wrapper');
+
+    if(!reactWrapper || !vueWrapper) return;
+
+    if (framework === 'react') {
+      reactWrapper.style.display = 'block';
+      vueWrapper.style.display = 'none';
+    } else if (framework === 'vue') {
+      reactWrapper.style.display = 'none';
+      vueWrapper.style.display = 'block';
+    }
+      
+  }
+
+  // Add event listeners to the buttons
+  document.getElementById('select-react')?.addEventListener('click', () => setFramework('react'));
+  document.getElementById('select-vue')?.addEventListener('click', () => setFramework('vue'));
+
+  // Call the function to set the initial value on page load
+  updateFramework();
+</script>

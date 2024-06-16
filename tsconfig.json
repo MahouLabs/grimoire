@@ -1,0 +1,16 @@
+{
+	"extends": "astro/tsconfigs/strict",
+	"compilerOptions": {
+		"types": ["@cloudflare/workers-types/2023-07-01"],
+		"jsx": "preserve",
+		"jsxImportSource": "react",
+		"baseUrl": "src",
+		"paths": {
+			"@utils/*": ["utils/*"],
+			"@db/*": ["db/*"],
+			"@components/*": ["components/*"],
+			"@layouts/*": ["layouts/*"],
+			"@pages/*": ["pages/*"]
+		}
+	}
+}

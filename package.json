@@ -1,0 +1,51 @@
+{
+  "name": "grimoire",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro build && wrangler pages dev",
+    "astro": "astro",
+    "deploy": "astro build && wrangler pages deploy",
+    "cf-typegen": "wrangler types",
+    "db:generate": "drizzle-kit generate --dialect=sqlite --schema=src/db/schema.ts",
+    "db:migrate": "bun src/db/migrate.ts",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/cloudflare": "^10.4.0",
+    "@astrojs/mdx": "^3.1.0",
+    "@astrojs/react": "^3.5.0",
+    "@astrojs/svelte": "^5.6.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/vue": "^4.5.0",
+    "@libsql/client": "^0.6.2",
+    "@lucia-auth/adapter-drizzle": "^1.0.7",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "arctic": "^1.9.1",
+    "astro": "^4.10.2",
+    "astro-seo": "^0.8.4",
+    "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.31.2",
+    "lucia": "^3.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "svelte": "^4.2.18",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.2",
+    "vue": "^3.4.29"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.1",
+    "@cloudflare/workers-types": "^4.20240614.0",
+    "@tailwindcss/typography": "^0.5.13",
+    "drizzle-kit": "^0.22.7",
+    "wrangler": "^3.61.0"
+  }
+}

@@ -1,0 +1,15 @@
+import { defineCollection, z } from "astro:content";
+
+export const componentsCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    type: z.literal("base").optional().default("base"),
+    name: z.literal("Components").optional().default("Components"),
+    shortTitle: z.string().optional().default("Components"),
+    order: z.number().optional().default(0),
+    title: z.string(),
+    description: z.string(),
+    lastModifiedAt: z.coerce.date().optional(),
+    publishedAt: z.coerce.date(),
+  }),
+});
