@@ -6,48 +6,33 @@ lastModifiedAt: 2024-06-18
 publishedAt: 2024-06-18
 ---
 
-import { BlurText } from "../../components/blur-text/blur-text.tsx";
+import { BlurText as ReactBlurText } from "../../components/blur-text/blur-text.tsx";
+import SvelteBlurText from "../../components/blur-text/blur-text.svelte";
+import VueBlurText from "../../components/blur-text/blur-text.vue";
 
 ## Blur Text
 
-<BlurText
-  text="Linear is a purpose-built tool for planning and building products"
-  className="text-4xl font-semibold"
-/>
+<div className="">
+  {props.framework === "react" && (
+    <ReactBlurText
+      text="This is a React component. Linear is a purpose-built tool for planning and building products"
+      className="text-4xl font-semibold"
+    />
+  )}
+  {props.framework === "vue" && (
+    <VueBlurText
+      text="This is a Vue component. Linear is a purpose-built tool for planning and building products"
+      className="text-4xl font-semibold"
+    />
+  )}
+  {props.framework === "svelte" && (
+    <SvelteBlurText
+      text="This is a svelte component. Linear is a purpose-built tool for planning and building products"
+      className="text-4xl font-semibold"
+    />
+  )}
+</div>
 
 ## Install
 
 Copy the following code to your project:
-
-```tsx
-import { cn } from "@utils/cn";
-
-type BlurTextProps = {
-  text: string;
-  className?: string;
-};
-
-export function BlurText({ text, className, ...props }: BlurTextProps) {
-  const words = text.split(" ");
-
-  return (
-    <span className="text-balance text-center">
-      {words.map((word, index) => (
-        <span
-          key={word}
-          className={cn("inline-block animate-blur-text opacity-0", className)}
-          style={{ animationDelay: `${index * 60}ms` }}
-          {...props}
-        >
-          {word}
-          {index < words.length - 1 && <span>&nbsp;</span>}
-        </span>
-      ))}
-    </span>
-  );
-}
-```
-
-This example shows how to create a table, insert data, and query data from a SQLite database, demonstrating its simplicity and effectiveness for straightforward database tasks.
-
-[Learn more at sqlite.org](https://www.sqlite.org)

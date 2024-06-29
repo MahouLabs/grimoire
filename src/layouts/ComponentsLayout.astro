@@ -1,16 +1,9 @@
 ---
-import { getCollection } from "astro:content";
+import Sidebar from "@components/sidebar.astro";
 import type { SEOProps } from "astro-seo";
-// import Navbar from "../components/navbar.astro";
-// import Sidebar from "../components/sidebar.astro";
-import { componentsCollection } from "../content/config";
 import Layout from "./Layout.astro";
 
 interface Props extends SEOProps {}
-
-// const allCollections = await Promise.all(
-//   Object.keys(componentsCollection).map(getCollection)
-// );
 ---
 
 <Layout {...Astro.props}>
@@ -18,18 +11,7 @@ interface Props extends SEOProps {}
     class="flex mx-auto max-w-5xl md:gap-14 px-8 md:px-10 lg:px-12 py-4 md:py-8 lg:py-12"
   >
     <aside class="shrink-0">
-      <!-- <Sidebar
-        sections={allCollections.map((collection) => ({
-          title: collection[0].data.name,
-          subsections: collection
-            .sort((a, b) => a.data.order - b.data.order)
-            .map((entry) => ({
-              title: entry.data.shortTitle,
-              href: `/${entry.collection}/${entry.slug}`,
-              status: getStatus(entry.data.publishedAt, entry.data.lastModifiedAt),
-            })),
-        }))}
-      /> -->
+      <Sidebar />
     </aside>
     <main class="gap-8 flex flex-col w-full">
       <!-- <Navbar /> -->
