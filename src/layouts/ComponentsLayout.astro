@@ -1,4 +1,5 @@
 ---
+import Navbar from "@components/navbar.astro";
 import Sidebar from "@components/sidebar.astro";
 import type { SEOProps } from "astro-seo";
 import Layout from "./Layout.astro";
@@ -8,13 +9,13 @@ interface Props extends SEOProps {}
 
 <Layout {...Astro.props}>
   <main
-    class="flex mx-auto max-w-5xl md:gap-14 px-8 md:px-10 lg:px-12 py-4 md:py-8 lg:py-12"
+    class="flex mx-auto max-w-[1400px] md:gap-14 px-8 md:px-10 lg:px-12 py-4 md:py-8 lg:py-12"
   >
     <aside class="shrink-0">
       <Sidebar />
     </aside>
     <main class="gap-8 flex flex-col w-full">
-      <!-- <Navbar /> -->
+      <Navbar />
       <slot />
     </main>
   </main>
