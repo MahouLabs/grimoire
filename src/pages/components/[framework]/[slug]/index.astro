@@ -1,9 +1,14 @@
 ---
-import { getEntry } from "astro:content";
+import { getEntry, z } from "astro:content";
 import ProseLayout from "@layouts/ProseLayout.astro";
 
-const { slug } = Astro.params;
-// @ts-ignore
+const acceptedFrameworks = ["react", "svelte", "vue", "solid"];
+const { framework, slug } = Astro.params;
+
+if (!acceptedFrameworks.includes(framework || "") || !slug) {
+  return Astro.redirect("/");
+}
+
 const entry = await getEntry('components', slug);
 if (!entry) {
   return Astro.redirect("/");
@@ -18,5 +23,5 @@ const { Content } = await entry.render();
 ---
 
 <ProseLayout title={entry.data.title} description={entry.data.description}>
-  <Content />
+  <Content framework={framework} />
 </ProseLayout>
