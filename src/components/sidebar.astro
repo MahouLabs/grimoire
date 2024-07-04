@@ -1,20 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import { cn } from "../utils/cn";
-
-// type Props =  {
-//   sections: {
-//     title: string;
-//     subsections: {
-//       title: string;
-//       href: string;
-//       status: 'new' | 'updated' | undefined;
-//     }[];
-//   }[];
-// }
+import FrameworkSwitcher from "./framework-switcher.astro";
 
 const path = Astro.url.pathname;
-// const sidebar = Astro.props;
+const { framework } = Astro.params;
 
 const isActive = (href: string) => path.includes(href);
 
@@ -77,6 +67,7 @@ const normalizeName = (name: string) => {
       </h1>
     </a>
     <div class="flex flex-col gap-10 -mt-1">
+      <FrameworkSwitcher />
       <div class="flex flex-col gap-4">
         <h2 class="text-gray-200 font-medium">Getting Started</h2>
         <div class="flex flex-col gap-3 text-sm font-semibold relative pl-4">
@@ -88,14 +79,14 @@ const normalizeName = (name: string) => {
             instructions.map((item) => (
               <a
                 class={cn(
-                  "text-gray-500 group hover:text-gray-300 relative",
+                  "text-gray-400 group hover:text-gray-100 relative",
                   "flex items-center gap-2",
                   "transition-colors duration-300",
                   {
-                    "text-gray-300": isActive(item.slug),
+                    "text-gray-100": isActive(item.slug),
                   }
                 )}
-                href={`/components/react/${item.slug}`}
+                href={`/components/${framework}/${item.slug}`}
               >
                 {normalizeName(item.slug)}
                 <div
@@ -130,14 +121,14 @@ const normalizeName = (name: string) => {
             components.map((component) => (
               <a
                 class={cn(
-                  "text-gray-500 group hover:text-gray-300 relative",
+                  "text-gray-400 group hover:text-gray-100 relative",
                   "flex items-center gap-2",
                   "transition-colors duration-300",
                   {
-                    "text-gray-300": isActive(component.slug),
+                    "text-gray-100": isActive(component.slug),
                   }
                 )}
-                href={`/components/react/${component.slug}`}
+                href={`/components/${framework}/${component.slug}`}
               >
                 {normalizeName(component.slug)}
                 <div

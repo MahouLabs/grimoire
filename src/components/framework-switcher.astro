@@ -1,0 +1,46 @@
+---
+const acceptedFrameworks = ["react", "svelte", "vue", "solid"] as const;
+const { framework } = Astro.params;
+---
+
+<div class="flex gap-2 items-center">
+  <label for="framework-switcher" class="sr-only">Select framework</label>
+  <select
+    id="framework-switcher"
+    class="bg-black rounded-md px-4 py-2 text-sm font-semibold w-full border dark:border-gray-800 dark:bg-gray-950 dark:text-white"
+  >
+    {
+      acceptedFrameworks.map((f) => (
+        <option value={f} selected={f === framework}>
+          {f.charAt(0).toUpperCase() + f.slice(1)}
+        </option>
+      ))
+    }
+  </select>
+</div>
+
+<script>
+  const acceptedFrameworks = ["react", "svelte", "vue", "solid"];
+
+  const frameworkSwitcher = document.getElementById(
+    "framework-switcher"
+  ) as unknown as HTMLSelectElement;
+
+  localStorage.setItem("grimoire-framework", frameworkSwitcher.value);
+
+  frameworkSwitcher.addEventListener("change", () => {
+    const selectedFramework = frameworkSwitcher.value;
+    const prevFramework = localStorage.getItem("grimoire-framework");
+
+    if (acceptedFrameworks.includes(selectedFramework)) {
+      localStorage.setItem("grimoire-framework", selectedFramework);
+
+      const pathname = window.location.pathname;
+      const newPathname = pathname.replace(
+        `/components/${prevFramework}`,
+        `/components/${selectedFramework}`
+      );
+      window.location.pathname = newPathname;
+    }
+  });
+</script>
