@@ -4,6 +4,7 @@ import { cn } from "../utils/cn";
 import FrameworkSwitcher from "./framework-switcher.astro";
 
 const path = Astro.url.pathname;
+const { framework } = Astro.params;
 
 const isActive = (href: string) => path.includes(href);
 
@@ -85,7 +86,7 @@ const normalizeName = (name: string) => {
                     "text-gray-300": isActive(item.slug),
                   }
                 )}
-                href={`/components/react/${item.slug}`}
+                href={`/components/${framework}/${item.slug}`}
               >
                 {normalizeName(item.slug)}
                 <div
@@ -127,7 +128,7 @@ const normalizeName = (name: string) => {
                     "text-gray-300": isActive(component.slug),
                   }
                 )}
-                href={`/components/react/${component.slug}`}
+                href={`/components/${framework}/${component.slug}`}
               >
                 {normalizeName(component.slug)}
                 <div
