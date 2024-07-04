@@ -9,7 +9,9 @@ if (!acceptedFrameworks.includes(framework || "") || !slug) {
   return Astro.redirect("/");
 }
 
-const entry = await getEntry('components', slug);
+const entry =
+  (await getEntry("components", slug)) ||
+  (await getEntry("instructions", slug));
 if (!entry) {
   return Astro.redirect("/");
 }

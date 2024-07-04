@@ -1,4 +1,4 @@
-<!-- ---
+---
 import { getCollection } from "astro:content";
 import { cn } from "../utils/cn";
 
@@ -16,21 +16,33 @@ import { cn } from "../utils/cn";
 const path = Astro.url.pathname;
 // const sidebar = Astro.props;
 
-const isActive = (href: string) => path.startsWith(href);
-// const items = 
+const isActive = (href: string) => path.includes(href);
+
 const components = await getCollection("components");
+const instructions = await getCollection("instructions");
+
+const normalizeName = (name: string) => {
+  const words = name.split("-");
+
+  words.forEach((word, index) => {
+    words[index] = word.charAt(0).toUpperCase() + word.slice(1);
+  });
+
+  return words.join(" ");
+};
 ---
 
 <div
   id="sidebar"
   data-open="false"
   class={cn(
-    "fixed md:sticky md:top-0 inset-y-0 bg-gray-950 z-50",
+    "fixed md:sticky md:top-0 inset-y-0 z-50",
     "transition-transform left-0 duration-300 ease-in-out",
     "md:translate-x-0 pl-6 pr-14 md:px-0 py-5 md:py-0",
     "border-r border-gray-900 md:border-0",
     "data-[open=true]:translate-x-0 data-[open=false]:-translate-x-full",
-    "md:data-[open=false]:translate-x-0"
+    "md:data-[open=false]:translate-x-0",
+    "bg-black"
   )}
 >
   <div
@@ -58,48 +70,45 @@ const components = await getCollection("components");
       </svg>
     </button>
   </div>
-  <div class="w-40 pl-4 shrink-0 flex flex-col gap-14">
-    <a
-      href="/"
-      class="text-gray-200 decoration-orange-500 pt-2"
-    >
+  <div class="w-40 shrink-0 flex flex-col gap-14">
+    <a href="/" class="text-gray-200 decoration-orange-500 pt-2">
       <h1 class="text-3xl font-medium h-[2.38rem] flex items-center">
         Grimoire
       </h1>
     </a>
     <div class="flex flex-col gap-10 -mt-1">
-      {
-          <div class="flex flex-col gap-4">
-            <h2 class="text-gray-200 font-medium">Components</h2>
-            <div class="flex flex-col gap-3 text-sm font-semibold relative">
-              <div
-                class={
-                  "absolute -left-4 bg-gray-800 -inset-y-1 w-px rounded-full"
-                }
-              />
-              {components.map((component) => (
-                <a
+      <div class="flex flex-col gap-4">
+        <h2 class="text-gray-200 font-medium">Getting Started</h2>
+        <div class="flex flex-col gap-3 text-sm font-semibold relative pl-4">
+          <div
+            class={"absolute left-0 bg-gray-800 -inset-y-1 w-px rounded-full"}
+          >
+          </div>
+          {
+            instructions.map((item) => (
+              <a
+                class={cn(
+                  "text-gray-500 group hover:text-gray-300 relative",
+                  "flex items-center gap-2",
+                  "transition-colors duration-300",
+                  {
+                    "text-gray-300": isActive(item.slug),
+                  }
+                )}
+                href={`/components/react/${item.slug}`}
+              >
+                {normalizeName(item.slug)}
+                <div
                   class={cn(
-                    "text-gray-500 group hover:text-gray-300 lowercase relative",
-                    "flex items-center gap-2",
-                    "transition-colors duration-300",
+                    "absolute -left-4 inset-y-0 w-px rounded-full",
+                    "group-hover:bg-white transition-colors duration-300",
                     {
-                      "text-gray-300": isActive(component.slug),
+                      "bg-white": isActive(item.slug),
                     }
                   )}
-                  href={`/components/react/${component.slug}`}
-                >
-                  {component.slug}
-                  <div
-                    class={cn(
-                      "absolute -left-4 inset-y-0 w-px rounded-full",
-                      "group-hover:bg-orange-500 transition-colors duration-300",
-                      {
-                        // "bg-orange-500": isActive(subsection.href),
-                      }
-                    )}
-                  />
-                  {/* {subsection.status !== undefined && (
+                />
+
+                {/* {subsection.status !== undefined && (
                     <span title={subsection.status} class={cn(
                       "h-1.5 w-1.5 rounded-full bg-gray-100",
                       {
@@ -107,11 +116,53 @@ const components = await getCollection("components");
                         "bg-green-500": subsection.status === 'new',
                       })} />
                   )} */}
-                </a>
-              ))}
-            </div>
+              </a>
+            ))
+          }
+        </div>
+        <h2 class="text-gray-200 font-medium">Components</h2>
+        <div class="flex flex-col gap-3 text-sm font-semibold relative pl-4">
+          <div
+            class={"absolute left-0 bg-gray-800 -inset-y-1 w-px rounded-full"}
+          >
           </div>
-      }
+          {
+            components.map((component) => (
+              <a
+                class={cn(
+                  "text-gray-500 group hover:text-gray-300 relative",
+                  "flex items-center gap-2",
+                  "transition-colors duration-300",
+                  {
+                    "text-gray-300": isActive(component.slug),
+                  }
+                )}
+                href={`/components/react/${component.slug}`}
+              >
+                {normalizeName(component.slug)}
+                <div
+                  class={cn(
+                    "absolute -left-4 inset-y-0 w-px rounded-full",
+                    "group-hover:bg-white transition-colors duration-300",
+                    {
+                      "bg-white": isActive(component.slug),
+                    }
+                  )}
+                />
+
+                {/* {subsection.status !== undefined && (
+                    <span title={subsection.status} class={cn(
+                      "h-1.5 w-1.5 rounded-full bg-gray-100",
+                      {
+                        "bg-orange-500": subsection.status === 'updated',
+                        "bg-green-500": subsection.status === 'new',
+                      })} />
+                  )} */}
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -120,4 +171,4 @@ const components = await getCollection("components");
   class="fixed z-[49] inset-0 hidden bg-black opacity-50"
   onclick="toggleSidebar()"
 >
-</div> -->
+</div>
