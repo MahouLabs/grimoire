@@ -1,20 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import { cn } from "../utils/cn";
-
-// type Props =  {
-//   sections: {
-//     title: string;
-//     subsections: {
-//       title: string;
-//       href: string;
-//       status: 'new' | 'updated' | undefined;
-//     }[];
-//   }[];
-// }
+import FrameworkSwitcher from "./framework-switcher.astro";
 
 const path = Astro.url.pathname;
-// const sidebar = Astro.props;
 
 const isActive = (href: string) => path.includes(href);
 
@@ -77,6 +66,7 @@ const normalizeName = (name: string) => {
       </h1>
     </a>
     <div class="flex flex-col gap-10 -mt-1">
+      <FrameworkSwitcher client:load />
       <div class="flex flex-col gap-4">
         <h2 class="text-gray-200 font-medium">Getting Started</h2>
         <div class="flex flex-col gap-3 text-sm font-semibold relative pl-4">
