@@ -79,11 +79,11 @@ const normalizeName = (name: string) => {
             instructions.map((item) => (
               <a
                 class={cn(
-                  "text-gray-500 group hover:text-gray-300 relative",
+                  "text-gray-400 group hover:text-gray-100 relative",
                   "flex items-center gap-2",
                   "transition-colors duration-300",
                   {
-                    "text-gray-300": isActive(item.slug),
+                    "text-gray-100": isActive(item.slug),
                   }
                 )}
                 href={`/components/${framework}/${item.slug}`}
@@ -121,11 +121,11 @@ const normalizeName = (name: string) => {
             components.map((component) => (
               <a
                 class={cn(
-                  "text-gray-500 group hover:text-gray-300 relative",
+                  "text-gray-400 group hover:text-gray-100 relative",
                   "flex items-center gap-2",
                   "transition-colors duration-300",
                   {
-                    "text-gray-300": isActive(component.slug),
+                    "text-gray-100": isActive(component.slug),
                   }
                 )}
                 href={`/components/${framework}/${component.slug}`}
