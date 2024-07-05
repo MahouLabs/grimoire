@@ -2,10 +2,11 @@ import { cn } from "@utils/cn";
 
 type BlurTextProps = {
   text: string;
+  startDelay?: number;
   className?: string;
 };
 
-export function BlurText({ text, className, ...props }: BlurTextProps) {
+export function BlurText({ text, startDelay = 0, className, ...props }: BlurTextProps) {
   const words = text.split(" ");
 
   return (
@@ -14,7 +15,7 @@ export function BlurText({ text, className, ...props }: BlurTextProps) {
         <span
           key={word}
           className={cn("inline-block animate-blur-text opacity-0", className)}
-          style={{ animationDelay: `${index * 60}ms` }}
+          style={{ animationDelay: `${index * 60 + startDelay}ms` }}
           {...props}
         >
           {word}

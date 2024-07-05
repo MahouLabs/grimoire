@@ -2,7 +2,6 @@
 import { BlurText } from "../components/blur-text/blur-text.tsx";
 // const user = Astro.locals.user
 import Layout from "../layouts/Layout.astro";
-import ProseLayout from "../layouts/ProseLayout.astro";
 ---
 
 <Layout title="Grimoire">
@@ -10,21 +9,24 @@ import ProseLayout from "../layouts/ProseLayout.astro";
     class="flex flex-col items-center justify-center gap-4 text-center h-screen p-4"
   >
     <div class="prose prose-neutral prose-h1:text-balance pb-20 prose-invert">
-      <h1 class="text-4xl font-bold animate-blur-text">Grimoire</h1>
+      <h1 class="text-6xl font-bold animate-blur-text">Grimoire</h1>
       <BlurText
-        className="text-pretty"
-        text="Grimoire is an upcoming open-source UI library designed for building
-        landing pages with first party support for React, Vue, Svelte and Solid."
+        className="text-pretty text-lg font-semibold"
+        startDelay={500}
+        text="An upcoming open-source UI library designed for building landing pages with first party support for React, Vue, Svelte and Solid."
       />
 
-      <p class="text-pretty">
+      <h3
+        class="text-pretty animate-blur-text opacity-0"
+        style="animation-delay: 2500ms;"
+      >
         Follow updates on <a
           class="underline bold"
           href="https://github.com/mahoulabs/grimoire">Github</a
         > and <a class="underline bold" href="https://twitter.com/thenickbit"
           >Twitter / 𝕏</a
         >
-      </p>
+      </h3>
     </div>
   </div>
 </Layout>
