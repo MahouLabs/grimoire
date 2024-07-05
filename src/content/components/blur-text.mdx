@@ -11,10 +11,6 @@ import SvelteBlurText from "../../components/blur-text/blur-text.svelte";
 import VueBlurText from "../../components/blur-text/blur-text.vue";
 import { Code } from "astro-expressive-code/components";
 
-import reactCode from "../../components/blur-text/blur-text.tsx?raw";
-import svelteCode from "../../components/blur-text/blur-text.svelte?raw";
-import vueCode from "../../components/blur-text/blur-text.vue?raw";
-
 # Blur Text
 
 Text entry animation inspired by the new [linear](https://linear.app/) landing page.
@@ -45,7 +41,3 @@ Text entry animation inspired by the new [linear](https://linear.app/) landing p
 ## Install
 
 Copy the following code to your project:
-
-{props.framework === "react" && <Code lang="tsx" code={reactCode} />}
-{props.framework === "vue" && <Code lang="tsx" code={vueCode} />}
-{props.framework === "svelte" && <Code lang="tsx" code={svelteCode} />}
