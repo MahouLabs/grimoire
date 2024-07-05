@@ -1,12 +1,35 @@
 ---
+import { BlurText } from "../components/blur-text/blur-text.tsx";
 // const user = Astro.locals.user
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <div class="flex flex-col items-center justify-center gap-4 text-center h-screen">
-    <h1 class="text-4xl font-bold">Grimoire</h1>
-    <p class="text-pretty">Grimoire is an upcoming open-source, framework-agnostic UI library designed for building landing pages.</p>
-    <p class="text-pretty">Follow updates on <a class="underline bold" href="https://github.com/mahoulabs/grimoire">Github</a> and <a class="underline bold" href="https://twitter.com/thenickbit">Twitter / 𝕏</a></p>
+<Layout title="Grimoire">
+  <div
+    class="flex flex-col items-center justify-center gap-4 text-center h-screen p-4"
+  >
+    <div class="prose prose-neutral prose-h1:text-balance pb-20 prose-invert">
+      <BlurText
+        className="text-6xl font-bold animate-blur-text block mb-4"
+        text="Grimoire"
+      />
+      <BlurText
+        className="text-pretty text-lg font-semibold"
+        startDelay={500}
+        text="An upcoming open-source UI library designed for building landing pages with first party support for React, Vue, Svelte and Solid."
+      />
+
+      <h3
+        class="text-pretty animate-blur-text opacity-0"
+        style="animation-delay: 2500ms;"
+      >
+        Follow updates on <a
+          class="underline bold"
+          href="https://github.com/mahoulabs/grimoire">Github</a
+        > and <a class="underline bold" href="https://twitter.com/thenickbit"
+          >Twitter / 𝕏</a
+        >
+      </h3>
+    </div>
   </div>
 </Layout>
