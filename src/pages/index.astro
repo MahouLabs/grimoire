@@ -9,7 +9,10 @@ import Layout from "../layouts/Layout.astro";
     class="flex flex-col items-center justify-center gap-4 text-center h-screen p-4"
   >
     <div class="prose prose-neutral prose-h1:text-balance pb-20 prose-invert">
-      <h1 class="text-6xl font-bold animate-blur-text">Grimoire</h1>
+      <BlurText
+        className="text-6xl font-bold animate-blur-text block mb-4"
+        text="Grimoire"
+      />
       <BlurText
         className="text-pretty text-lg font-semibold"
         startDelay={500}
