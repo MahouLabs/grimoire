@@ -6,11 +6,9 @@ import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
 import { defineConfig, envField } from "astro/config";
 
-import expressiveCode from "astro-expressive-code";
-
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react(), vue(), svelte(), expressiveCode(), mdx()],
+  integrations: [tailwind(), react(), vue(), svelte(), mdx()],
   output: "server",
   adapter: cloudflare({
     platformProxy: {
