@@ -9,6 +9,10 @@ publishedAt: 2024-06-18
 import { BlurText as ReactBlurText } from "../../components/blur-text/blur-text.tsx";
 import SvelteBlurText from "../../components/blur-text/blur-text.svelte";
 import VueBlurText from "../../components/blur-text/blur-text.vue";
+import { Code } from "@astrojs/starlight/components";
+import reactCode from "../../components/blur-text/blur-text.tsx?raw";
+import svelteCode from "../../components/blur-text/blur-text.svelte?raw";
+import vueCode from "../../components/blur-text/blur-text.vue?raw";
 
 # Blur Text
 
@@ -40,3 +44,7 @@ Text entry animation inspired by the new [linear](https://linear.app/) landing p
 ## Install
 
 Copy the following code to your project:
+
+{props.framework === "react" && <Code code={reactCode} lang="tsx" title="src/components/blur-text.tsx" />}
+{props.framework === "svelte" && <Code code={svelteCode} lang="svelte" title="src/components/blur-text.svelte" />}
+{props.framework === "vue" && <Code code={vueCode} lang="vue" title="src/components/blur-text.vue" />}
