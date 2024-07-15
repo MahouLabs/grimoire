@@ -18,14 +18,14 @@ export default defineConfig({
     starlight({
       title: "Grimoire",
     }),
-    vite({
-      ssr: {
-        // This should be removed once Starlight's SSR support is released
-        external: ["node:url", "node:path", "node:child_process", "node:fs"],
-      },
-    }),
     mdx(),
   ],
+  vite: {
+    ssr: {
+      // This should be removed once Starlight's SSR support is released
+      external: ["node:url", "node:path", "node:child_process", "node:fs"],
+    },
+  },
   output: "hybrid",
   adapter: cloudflare({
     platformProxy: {
