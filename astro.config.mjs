@@ -20,7 +20,7 @@ export default defineConfig({
     }),
     mdx(),
   ],
-  output: "static",
+  output: "hybrid",
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
