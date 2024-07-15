@@ -20,12 +20,12 @@ export default defineConfig({
     }),
     mdx(),
   ],
-  vite: {
-    ssr: {
-      // This should be removed once Starlight's SSR support is released
-      external: ["node:url", "node:path", "node:child_process", "node:fs"],
-    },
-  },
+  // vite: {
+  //   ssr: {
+  //     // This should be removed once Starlight's SSR support is released
+  //     external: ["node:url", "node:path", "node:child_process", "node:fs"],
+  //   },
+  // },
   output: "static",
   // adapter: cloudflare({
   //   platformProxy: {

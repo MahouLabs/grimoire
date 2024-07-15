@@ -1,5 +1,6 @@
 ---
 import { getEntry, z } from "astro:content";
+import { getCollection } from "astro:content";
 import ProseLayout from "@layouts/ProseLayout.astro";
 
 const acceptedFrameworks = ["react", "svelte", "vue", "solid"];
@@ -20,6 +21,22 @@ Astro.response.headers.set(
   "Cache-Control",
   "public, max-age=3600, s-maxage=3600, stale-while-revalidate=3600"
 );
+
+export async function getStaticPaths() {
+  const frameworks = ["react", "svelte", "vue", "solid"];
+  const components = await getCollection("components");
+  const instructions = await getCollection("instructions");
+
+  const slugs = [...components, ...instructions].map((content) => content.slug);
+
+  const paths = frameworks.flatMap((framework) => {
+    return slugs.map((slug) => ({
+      params: { framework, slug },
+    }));
+  });
+
+  return paths;
+}
 
 const { Content } = await entry.render();
 ---
