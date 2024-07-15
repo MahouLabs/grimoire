@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 
 import starlight from "@astrojs/starlight";
 
@@ -26,10 +26,10 @@ export default defineConfig({
       external: ["node:url", "node:path", "node:child_process", "node:fs"],
     },
   },
-  output: "hybrid",
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-  }),
+  output: "static",
+  // adapter: cloudflare({
+  //   platformProxy: {
+  //     enabled: true,
+  //   },
+  // }),
 });
