@@ -20,7 +20,7 @@ export default defineConfig({
     }),
     mdx(),
   ],
-  output: "server",
+  output: "static",
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
