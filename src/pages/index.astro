@@ -1,5 +1,5 @@
 ---
-import { BlurText } from "../components/blur-text/blur-text.tsx";
+import BlurText from "../components/blur-text/blur-text.tsx";
 // const user = Astro.locals.user
 import Layout from "../layouts/Layout.astro";
 ---
@@ -8,7 +8,9 @@ import Layout from "../layouts/Layout.astro";
   <div
     class="flex flex-col items-center justify-center gap-4 text-center h-screen p-4"
   >
-    <div class="prose prose-neutral prose-h1:text-balance pb-20 dark:prose-invert">
+    <div
+      class="prose prose-neutral prose-h1:text-balance pb-20 dark:prose-invert"
+    >
       <BlurText
         className="text-6xl font-bold animate-blur-text block mb-4"
         text="Grimoire"
@@ -30,6 +32,13 @@ import Layout from "../layouts/Layout.astro";
           >Twitter / 𝕏</a
         >
       </h3>
+
+      <a
+        href="/components/react/blur-text"
+        style="animation-delay: 3000ms"
+        class="text-pretty animate-blur-text opacity-0"
+        >Browse alpha components</a
+      >
     </div>
   </div>
 </Layout>
