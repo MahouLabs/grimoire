@@ -6,13 +6,13 @@ lastModifiedAt: 2024-06-18
 publishedAt: 2024-06-18
 ---
 
-import { BlurText as ReactBlurText } from "../../components/blur-text/blur-text.tsx";
+import ReactBlurText from "../../components/blur-text/blur-text.tsx";
 import SvelteBlurText from "../../components/blur-text/blur-text.svelte";
 import VueBlurText from "../../components/blur-text/blur-text.vue";
-import { Code } from "@astrojs/starlight/components";
+
 import reactCode from "../../components/blur-text/blur-text.tsx?raw";
-import svelteCode from "../../components/blur-text/blur-text.svelte?raw";
-import vueCode from "../../components/blur-text/blur-text.vue?raw";
+// import svelteCode from "../../components/blur-text/blur-text.svelte?raw";
+// import vueCode from "../../components/blur-text/blur-text.vue?raw";
 
 # Blur Text
 
@@ -45,6 +45,45 @@ Text entry animation inspired by the new [linear](https://linear.app/) landing p
 
 Copy the following code to your project:
 
-{props.framework === "react" && <Code code={reactCode} lang="tsx" title="src/components/blur-text.tsx" />}
+```tsx
+import { cn } from "@utils/cn";
+
+type BlurTextProps = {
+  text: string;
+  startDelay?: number;
+  className?: string;
+};
+
+export default function BlurText({
+  text,
+  startDelay = 0,
+  className,
+  ...props
+}: BlurTextProps) {
+  const words = text.split(" ");
+
+  return (
+    <span className="text-balance text-center">
+      {words.map((word, index) => (
+        <span
+          key={word}
+          className={cn("inline-block animate-blur-text opacity-0", className)}
+          style={{ animationDelay: `${index * 60 + startDelay}ms` }}
+          {...props}
+        >
+          {word}
+          {index < words.length - 1 && <span>&nbsp;</span>}
+        </span>
+      ))}
+    </span>
+  );
+}
+```
+
+<figure>
+
+</figure>
+
+{/* {props.framework === "react" && <Code code={reactCode} lang="tsx" title="src/components/blur-text.tsx" />}
 {props.framework === "svelte" && <Code code={svelteCode} lang="svelte" title="src/components/blur-text.svelte" />}
-{props.framework === "vue" && <Code code={vueCode} lang="vue" title="src/components/blur-text.vue" />}
+{props.framework === "vue" && <Code code={vueCode} lang="vue" title="src/components/blur-text.vue" />} */}

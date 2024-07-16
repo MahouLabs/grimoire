@@ -6,20 +6,9 @@ import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
 import { defineConfig } from "astro/config";
 
-import starlight from "@astrojs/starlight";
-
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    react(),
-    vue(),
-    svelte(),
-    starlight({
-      title: "Grimoire",
-    }),
-    mdx(),
-  ],
+  integrations: [tailwind(), react(), vue(), svelte(), mdx()],
   // vite: {
   //   ssr: {
   //     // This should be removed once Starlight's SSR support is released
@@ -27,6 +16,11 @@ export default defineConfig({
   //   },
   // },
   output: "static",
+  markdown: {
+    shikiConfig: {
+      theme: "catppuccin-mocha",
+    },
+  },
   // adapter: cloudflare({
   //   platformProxy: {
   //     enabled: true,

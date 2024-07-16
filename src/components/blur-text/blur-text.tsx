@@ -6,7 +6,12 @@ type BlurTextProps = {
   className?: string;
 };
 
-export function BlurText({ text, startDelay = 0, className, ...props }: BlurTextProps) {
+export default function BlurText({
+  text,
+  startDelay = 0,
+  className,
+  ...props
+}: BlurTextProps) {
   const words = text.split(" ");
 
   return (
